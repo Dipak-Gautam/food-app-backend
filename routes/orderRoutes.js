@@ -6,6 +6,7 @@ const { jwtAuthMiddleWare } = require("./../jwt");
 router.post("/add", jwtAuthMiddleWare, async (req, res) => {
   try {
     const data = req.body;
+    console.log("recived data", data);
     const newOrder = new Order(data);
     const response = await newOrder.save();
     res
@@ -33,7 +34,7 @@ router.get("/all", jwtAuthMiddleWare, async (req, res) => {
     const response = await Order.find();
     res.status(200).json(response);
   } catch (error) {
-    console.log("order/delete", error);
+    console.log("order/all", error);
     res.status(500).json(error);
   }
 });

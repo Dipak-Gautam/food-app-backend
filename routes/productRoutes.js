@@ -56,7 +56,6 @@ router.delete("/", jwtAuthMiddleWare, async (req, res) => {
 router.patch("/", jwtAuthMiddleWare, async (req, res) => {
   try {
     const { id, ...updateData } = req.body;
-    console.log("Update Data:", updateData);
 
     const response = await Product.findByIdAndUpdate(id, updateData, {
       new: true,

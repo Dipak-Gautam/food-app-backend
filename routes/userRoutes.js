@@ -24,6 +24,7 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
+    console.log("login called", req.body);
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
 
@@ -49,7 +50,6 @@ router.get("/profile", jwtAuthMiddleWare, async (req, res) => {
     const userData = req.user;
     const userId = userData.id;
     const user = await User.findById(userId);
-    console.log("user", user);
     res.status(200).json({ message: "Profile data", data: user });
   } catch (error) {
     console.log("login", error);
@@ -75,6 +75,47 @@ router.put("/profile/password", jwtAuthMiddleWare, async (req, res) => {
   } catch (error) {
     console.log("login", error);
     res.status(500).json({ message: "internal server error", error: error });
+  }
+});
+
+router.put("/profile", jwtAuthMiddleWare, async (req, res) => {
+  try {
+    const userData = req.user;
+    const userId = userData.id;
+
+    const {
+      name,
+      mobile,
+      address,
+      city,
+      state,
+      zipCode,
+      deliveryInstructions,
+    } = req.body;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (name) user.name = name;
+    if (mobile) user.mobile = mobile;
+    if (address) user.address = address;
+    if (city) user.city = city;
+    if (state) user.state = state;
+    if (zipCode) user.zipCode = zipCode;
+    if (deliveryInstructions) user.deliveryInstructions = deliveryInstructions;
+
+    const updatedUser = await user.save();
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log("profile update", error);
+    res.status(500).json({ message: "Internal server error", error: error });
   }
 });
 

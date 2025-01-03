@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT;
 
 app.get("/", function (req, res) {
-  res.send("hello from server of food app 2");
+  res.send("hello from server of food app developed by dipak");
 });
 
 const userRoutes = require("./routes/userRoutes");
