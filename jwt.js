@@ -8,7 +8,7 @@ const jwtAuthMiddleWare = (req, res, next) => {
   if (!token) return res.status(401).json({ error: "Invalid Token" });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, "anjan");
     req.user = decoded;
     next();
   } catch (error) {
@@ -18,7 +18,7 @@ const jwtAuthMiddleWare = (req, res, next) => {
 };
 
 const generateJWtToken = (userData) => {
-  return jwt.sign(userData, process.env.JWT_SECRET);
+  return jwt.sign(userData, "anjan");
 };
 
 module.exports = { jwtAuthMiddleWare, generateJWtToken };
