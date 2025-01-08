@@ -21,6 +21,6 @@ app.use("/product", productRoutes);
 const orderRoutes = require("./routes/orderRoutes");
 app.use("/order", orderRoutes);
 
-app.listen(port, "0.0.0.0/0", () => {
+app.listen(port, "0.0.0.0", () => {
   console.log("listening on port 3123");
 });
