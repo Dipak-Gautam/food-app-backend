@@ -4,6 +4,8 @@ require("dotenv").config();
 const mongoUrl = process.env.mongoDbUrl;
 
 mongoose.connect(mongoUrl, {
+  ssl: true,
+  sslValidate: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
