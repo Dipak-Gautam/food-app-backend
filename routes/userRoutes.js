@@ -4,7 +4,6 @@ const User = require("./../modals/users");
 const { jwtAuthMiddleWare, generateJWtToken } = require("./../jwt");
 
 router.post("/signup", async (req, res) => {
-  console.log("signup alled");
   try {
     const data = req.body;
     const newUser = new User(data);

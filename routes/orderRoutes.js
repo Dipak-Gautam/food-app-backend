@@ -6,7 +6,6 @@ const { jwtAuthMiddleWare } = require("./../jwt");
 router.post("/add", jwtAuthMiddleWare, async (req, res) => {
   try {
     const data = req.body;
-    console.log("recived data", data);
     const newOrder = new Order(data);
     const response = await newOrder.save();
     res
