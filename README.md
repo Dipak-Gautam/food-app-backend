@@ -27,8 +27,8 @@ Ensure you have the following installed on your machine:
    Create a `.env` file in the project root and define your environment variables:
    ```
    PORT=3000
-   DB_URL=mongodb://localhost:27017/your-db-name
-   JWT_SECRET=your-secret-key
+   mongoDbUrl=mongodb://localhost:27017/your-db-name
+   JWT_Secret=your-secret-key
    ```
 
 4. **Start the Development Server**:
@@ -64,6 +64,7 @@ This project uses the following major dependencies:
 - `mongoose`
 - `dotenv`
 - `jsonwebtoken`
+- `bcrypt`
 
 ## Troubleshooting
 
