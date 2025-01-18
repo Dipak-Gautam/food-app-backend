@@ -20,6 +20,9 @@ const productRoutes = require("./routes/productRoutes");
 app.use("/product", productRoutes);
 const orderRoutes = require("./routes/orderRoutes");
 app.use("/order", orderRoutes);
+const deliveryRoutes = require("./routes/deliveryRoutes");
+const { jwtAuthMiddleWare } = require("./jwt");
+app.use("/delivery", jwtAuthMiddleWare, deliveryRoutes);
 
 app.listen(port, "0.0.0.0", () => {
   console.log("listening on port 3123");
