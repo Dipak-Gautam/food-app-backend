@@ -28,6 +28,18 @@ router.get("/all", jwtAuthMiddleWare, async (req, res) => {
   }
 });
 
+router.get("/all-unauth", async (req, res) => {
+  try {
+    const products = await Product.find();
+    res
+      .status(200)
+      .json({ message: "Products fetched successfully", data: products });
+  } catch (error) {
+    console.log("product/all", error);
+    res.status(500).json(error);
+  }
+});
+
 router.get("/get", jwtAuthMiddleWare, async (req, res) => {
   try {
     const data = req.body;
